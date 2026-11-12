@@ -8,9 +8,27 @@ import type {
   ClassType,
 } from '../types/index';
 
-const BASE_URL =
-  (Constants.expoConfig?.extra?.apiBaseUrl as string | undefined) ??
-  'http://localhost:3000';
+const API_PORT = 3000;
+
+function resolveBaseUrl(): string {
+  const configured = Constants.expoConfig?.extra?.apiBaseUrl as
+    | string
+    | undefined;
+  if (configured) return configured;
+
+  const hostUri =
+    Constants.expoConfig?.hostUri ??
+    (Constants.expoGoConfig?.debuggerHost as string | undefined);
+  const lanHost = hostUri?.split(':')[0];
+
+  if (lanHost && lanHost !== 'localhost' && lanHost !== '127.0.0.1') {
+    return `http://${lanHost}:${API_PORT}`;
+  }
+
+  return `http://localhost:${API_PORT}`;
+}
+
+const BASE_URL = resolveBaseUrl();
 
 export class ApiError extends Error {
   public readonly statusCode: number;

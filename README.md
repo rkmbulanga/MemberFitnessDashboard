@@ -141,10 +141,12 @@ npm start        # Expo dev server — press i / a / w, or scan the QR
 npm test         # run Jest + RNTL suite
 ```
 
-> **Point the app at the API.** The base URL is read from `app.json` →
-> `expo.extra.apiBaseUrl` (default `http://localhost:3000`). On a physical device,
-> change it to your machine's LAN IP (e.g. `http://192.168.0.10:3000`) so the phone can
-> reach the backend. The seeded "current member" is `m-1` (`src/config.ts`).
+> **Point the app at the API.** By default the client auto-detects the right host
+> (`src/api/client.ts`): on a device or simulator it reuses the LAN IP that Expo already
+> serves the bundle from and targets port `3000`, so a physical iPhone **works with no
+> config** as long as it shares Wi-Fi with your Mac. To force a specific URL, set
+> `expo.extra.apiBaseUrl` in `app.json` (e.g. `http://192.168.0.10:3000`) — when present
+> it overrides auto-detection. The seeded "current member" is `m-1` (`src/config.ts`).
 
 ### Screens
 
