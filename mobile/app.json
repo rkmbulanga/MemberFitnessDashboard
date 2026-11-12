@@ -1,0 +1,21 @@
+{
+  "expo": {
+    "name": "Member Fitness Dashboard",
+    "slug": "member-fitness-dashboard",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "memberfitness",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "plugins": ["expo-router"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "edgeToEdgeEnabled": true
+    },
+    "extra": {
+      "apiBaseUrl": "http://localhost:3000"
+    }
+  }
+}
